@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name="etudiant")
 public class Etudiant implements Serializable{
@@ -28,6 +30,7 @@ public class Etudiant implements Serializable{
 	@Column(name="e_prenom")
 	private String prenom;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name="e_date_naissance")
 	private Date dateNaissance;
 	

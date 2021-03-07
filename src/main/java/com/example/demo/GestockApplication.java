@@ -1,22 +1,29 @@
 package com.example.demo;
 
+import java.io.File;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
 import com.example.demo.dao.EtudiantRepository;
 import com.example.demo.entities.Etudiant;
+import com.example.demo.web.EtudiantController;
 
 @SpringBootApplication
+@ComponentScan({"com.example.demo","web"})
 public class GestockApplication {
 
 	public static void main(String[] args) {
+		
+		String path = EtudiantController.uploadDirectory;
+		new File(path).mkdir();
 		ApplicationContext contexte = SpringApplication.run(GestockApplication.class, args);
 		EtudiantRepository etudiantRepository = contexte.getBean(EtudiantRepository.class);
 		
