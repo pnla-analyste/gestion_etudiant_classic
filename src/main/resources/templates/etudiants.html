@@ -14,7 +14,7 @@
                    <form th:action="@{/Etudiant/index}" method="get">
                       <div class="form-group">
                          <label>Mot Clef : </label>
-                         <input type="text" name="motClef" th:value="${motClef}"/>
+                         <input type="text" name="mc" th:value="${mc}"/>
                          <button type="submit">Chercher</button>
                       </div>
                    </form>
@@ -34,6 +34,7 @@
                          <th scope="col">Telephone</th>
                          <th scope="col">Email</th>
                          <th scope="col">Ecole</th>
+                         <th scope="col">Universite</th>
                          <th scope="col">Photo</th>
                         </tr>
                     </thead>
@@ -46,7 +47,10 @@
                          <td scope="row" th:text="${e.telephone}"></td>
                          <td scope="row" th:text="${e.email}"></td>
                          <td scope="row" th:text="${e.ecole}"></td>
-                         <td scope="row" th:text="${e.photo}"></td>
+                         <td scope="row" th:text="${e.universite}"></td>
+                         <td scope="row">
+                                <img class="img-circle" th:src="@{getPhoto(id=${e.id})}" width="100" height="100"/>
+                         </td>
                         </tr>
                     </tbody>
                 </table>
