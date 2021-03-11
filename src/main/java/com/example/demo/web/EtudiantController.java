@@ -85,6 +85,7 @@ public class EtudiantController {
 			 		Path fileNameAndPath = Paths.get(uploadDirectory, fileName.toString());
 			  //2.2- Contenu du fichier (Flux physique : contenu)
 			 		Files.write(fileNameAndPath, file.getBytes());	
+			 		
 		}
 		
 		 return "redirect:index";
@@ -98,5 +99,36 @@ public class EtudiantController {
 		File f = new File(name);
 		
 		return IOUtils.toByteArray(new FileInputStream(f));
+	}
+	
+	@RequestMapping(value="/deleteEtudiant")
+	public String delete(Long id) throws Exception {
+ 		
+		Thread t1 = new Thread() {
+			public void run() {
+				//1- Suppression logique
+				etudiantRepository.deleteById(id);
+			}
+		};
+		
+		Thread t2 = new Thread() {
+			public void run() {
+				//2- Suppression physique
+				StringBuilder fileName = new StringBuilder();
+		 		String name = String.valueOf(id);
+		 		fileName.append(name);
+		 		Path fileNameAndPath = Paths.get(uploadDirectory, fileName.toString());
+		 		try {
+					Files.delete(fileNameAndPath);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		};
+		t1.start();
+		t2.start();
+		
+		return "redirect:index";
 	}
 }

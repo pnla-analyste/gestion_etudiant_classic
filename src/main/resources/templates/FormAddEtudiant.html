@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf8"/>
+		<title>Ajout des etudiants</title>
+ 		<link rel="stylesheet" href="https://cdn.rawgit.com/JacobLett/bootstrap4-latest/master/bootstrap-4-latest.min.css"/>
+		<link rel="stylesheet" href="../static/formAddEtudiant.css"
+				 th:href="@{/formAddEtudiant.css}"/>
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+		<script src="https://cdn.rawgit.com/JacobLett/bootstrap4-latest/504729ba/bootstrap-4-latest.min.js"></script>
+	</head>
+	<body>
+	 <section>
+    	<div class="container">
+      		<div class="row justify-content-center">
+        		<div class="col-12 col-md-8 col-lg-8 col-xl-6">
+          			<div class="row">
+            			<div class="col text-center title">
+              			<h1>Ajout des etudiants</h1>
+           			</div>
+				  </div>
+				  <form th:action="@{addEtudiant}" method="POST" th:object="${etudiant}" enctype="multipart/form-data">
+							<div class="row align-items-center">
+            					<div class="col mt-4">
+              						<input type="text" class="form-control" placeholder="Nom" th:field="*{nom}">
+								</div>
+							</div>
+							<div class="row align-items-center">
+            					<div class="col mt-4">
+              						<input type="text" class="form-control" placeholder="Prenom" th:field="*{prenom}">
+            					</div>
+							</div>
+							<div class="row align-items-center">
+            					<div class="col mt-4">
+              						<input type="date" class="form-control" placeholder="Date Naissance" th:field="*{dateNaissance}">
+								</div>
+							</div> 
+							<div class="row align-items-center">
+            					<div class="col mt-4">
+              						<input type="file" name="image" class="form-control" placeholder="Photo" >
+								</div>
+							</div> 
+          					<div class="row align-items-center mt-4">
+            					<div class="col">
+              						<input type="email" class="form-control" placeholder="Email" th:field="*{email}">
+            					</div>
+         	   				 </div>
+          					<div class="row align-items-center mt-4">
+           						<div class="col">
+             						<input type="text" class="form-control" placeholder="Telephone" th:field="*{telephone}">
+            					 </div>
+         					</div>
+                			<div class="row align-items-center mt-4">
+           						<div class="col">
+             						 <input type="text" class="form-control" placeholder="Ecole" th:field="*{ecole}">
+            					</div>
+          					</div>
+          					<div class="row align-items-center mt-4">
+           						<div class="col">
+             				 		<input type="text" class="form-control" placeholder="Faculte" th:field="*{faculte}">
+            					</div>
+				  			</div>
+				  			<div class="row align-items-center mt-4">
+           						<div class="col">
+             				 		<input type="text" class="form-control" placeholder="Classe" th:field="*{classe}">
+            					</div>
+				  			</div>
+				  			<div class="row align-items-center mt-4">
+           						<div class="col">
+             						 <input type="text" class="form-control" placeholder="Niveau" th:field="*{niveau}">
+            					</div>
+							  </div>
+							  <div class="row align-items-center mt-4">
+           						<div class="col">
+             						 <input type="text" class="form-control" placeholder="Universite" th:field="*{universite}">
+            					</div>
+          					</div>
+          					<div class="row justify-content-start mt-4">
+            					<div class="col">
+									 <button class="btn btn-primary mt-4">Add</button>
+            					</div>
+         		 			</div>
+				  </form>
+        </div>
+      </div>
+     </div>
+    </section>
+</body>
+</html>

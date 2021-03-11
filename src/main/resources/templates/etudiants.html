@@ -36,6 +36,7 @@
                          <th scope="col">Ecole</th>
                          <th scope="col">Universite</th>
                          <th scope="col">Photo</th>
+                         <th scope="col">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -51,6 +52,7 @@
                          <td scope="row">
                                 <img class="img-circle" th:src="@{getPhoto(id=${e.id})}" width="100" height="100"/>
                          </td>
+                         <td><a onclick="return confirm('Etes vous sur ?')" th:href="@{deleteEtudiant(id=${e.id})}">delete</a></td>
                         </tr>
                     </tbody>
                 </table>

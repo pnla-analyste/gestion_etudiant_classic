@@ -19,7 +19,7 @@ public class Etudiant implements Serializable{
 	@Id
 	@GeneratedValue
 	@Column(name="e_id")
-	private int id;
+	private Long id;
 	
 	@Column(name="e_matricule")
 	private String matricule;
@@ -95,26 +95,7 @@ public class Etudiant implements Serializable{
 		this.niveau = e.niveau;
 	}
 
-	public Etudiant(int id, String matricule, String nom, String prenom, Date dateNaissance, String photo,
-			String telephone, String email, String universite, String ecole, String faculte, String classe,
-			String niveau) {
-		super();
-		this.id = id;
-		this.matricule = matricule;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.dateNaissance = dateNaissance;
-		this.photo = photo;
-		this.telephone = telephone;
-		this.email = email;
-		this.universite = universite;
-		this.ecole = ecole;
-		this.faculte = faculte;
-		this.classe = classe;
-		this.niveau = niveau;
-	}
-
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -231,7 +212,7 @@ public class Etudiant implements Serializable{
 		result = prime * result + ((ecole == null) ? 0 : ecole.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((faculte == null) ? 0 : faculte.hashCode());
-		result = prime * result + id;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((matricule == null) ? 0 : matricule.hashCode());
 		result = prime * result + ((niveau == null) ? 0 : niveau.hashCode());
 		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
@@ -246,9 +227,7 @@ public class Etudiant implements Serializable{
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
+		if (!(obj instanceof Etudiant))
 			return false;
 		Etudiant other = (Etudiant) obj;
 		if (classe == null) {
@@ -276,7 +255,10 @@ public class Etudiant implements Serializable{
 				return false;
 		} else if (!faculte.equals(other.faculte))
 			return false;
-		if (id != other.id)
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
 			return false;
 		if (matricule == null) {
 			if (other.matricule != null)
@@ -315,5 +297,5 @@ public class Etudiant implements Serializable{
 			return false;
 		return true;
 	}
-	
+
 }
